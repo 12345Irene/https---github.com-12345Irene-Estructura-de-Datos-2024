@@ -1,6 +1,70 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
-// ejercicio 9
+
+// Ejercicio 8
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        List<double> principalList = new List<double>();
+        
+        Console.Write("Ingrese la cantidad de datos: ");
+        int n = int.Parse(Console.ReadLine());
+        
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"Ingrese el dato {i + 1}: ");
+            double data = double.Parse(Console.ReadLine());
+            principalList.Add(data);
+        }
+        
+        // Calcular el promedio
+        double average = principalList.Average();
+        
+        // Crear listas secundarias
+        List<double> lessThanOrEqualToAverage = new List<double>();
+        List<double> greaterThanAverage = new List<double>();
+        
+        foreach (double data in principalList)
+        {
+            if (data <= average)
+            {
+                lessThanOrEqualToAverage.Add(data);
+            }
+            else
+            {
+                greaterThanAverage.Add(data);
+            }
+        }
+        
+        // Mostrar resultados
+        Console.WriteLine("\nDatos en la lista principal:");
+        foreach (double data in principalList)
+        {
+            Console.WriteLine(data);
+        }
+        
+        Console.WriteLine($"\nPromedio: {average}");
+        
+        Console.WriteLine("\nDatos iguales o menores al promedio:");
+        foreach (double data in lessThanOrEqualToAverage)
+        {
+            Console.WriteLine(data);
+        }
+        
+        Console.WriteLine("\nDatos mayores al promedio:");
+        foreach (double data in greaterThanAverage)
+        {
+            Console.WriteLine(data);
+        }
+    }
+}
+
+// Ejercicio 9
 
 using System;
 using System.Collections.Generic;
@@ -67,82 +131,5 @@ class Program
         }
 
         return true;
-    }
-}
-
-
-
-// Ejercicio 8
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-class Program
-{
-    static void Main()
-    {
-        List<double> datosPrincipales = new List<double>();
-        List<double> datosMenoresOIguales = new List<double>();
-        List<double> datosMayores = new List<double>();
-
-        // Ingreso de datos
-        Console.WriteLine("Ingrese los datos (ingrese 'fin' para terminar):");
-        string input;
-        while ((input = Console.ReadLine()) != "fin")
-        {
-            if (double.TryParse(input, out double dato))
-            {
-                datosPrincipales.Add(dato);
-            }
-            else
-            {
-                Console.WriteLine("Entrada inválida. Ingrese un número real válido o 'fin' para terminar.");
-            }
-        }
-
-        if (datosPrincipales.Count > 0)
-        {
-            // Calcular el promedio
-            double promedio = datosPrincipales.Average();
-
-            // Separar los datos en las listas correspondientes
-            foreach (var dato in datosPrincipales)
-            {
-                if (dato <= promedio)
-                {
-                    datosMenoresOIguales.Add(dato);
-                }
-                else
-                {
-                    datosMayores.Add(dato);
-                }
-            }
-
-            // Mostrar resultados
-            Console.WriteLine("\nResultados:");
-            Console.WriteLine("a. Datos cargados en la lista principal:");
-            ImprimirLista(datosPrincipales);
-
-            Console.WriteLine($"\nb. El promedio de los datos cargados es: {promedio}");
-
-            Console.WriteLine("\nc. Datos menores o iguales al promedio:");
-            ImprimirLista(datosMenoresOIguales);
-
-            Console.WriteLine("\nd. Datos mayores al promedio:");
-            ImprimirLista(datosMayores);
-        }
-        else
-        {
-            Console.WriteLine("No se ingresaron datos.");
-        }
-    }
-
-    static void ImprimirLista(List<double> lista)
-    {
-        foreach (var dato in lista)
-        {
-            Console.Write($"{dato} ");
-        }
-        Console.WriteLine();
     }
 }
