@@ -1,0 +1,59 @@
+// Ejercicio 8
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        List<double> listaPrincipal = new List<double>();
+        List<double> listaMenoresIgualPromedio = new List<double>();
+        List<double> listaMayoresPromedio = new List<double>();
+
+        Console.Write("Ingrese la cantidad de datos: ");
+        int cantidadDatos = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < cantidadDatos; i++)
+        {
+            Console.Write($"Ingrese el dato {i + 1}: ");
+            double dato = double.Parse(Console.ReadLine());
+            listaPrincipal.Add(dato);
+        }
+
+        double promedio = listaPrincipal.Average();
+
+        foreach (var dato in listaPrincipal)
+        {
+            if (dato <= promedio)
+            {
+                listaMenoresIgualPromedio.Add(dato);
+            }
+            else
+            {
+                listaMayoresPromedio.Add(dato);
+            }
+        }
+
+        Console.WriteLine("\nDatos cargados en la lista principal:");
+        foreach (var dato in listaPrincipal)
+        {
+            Console.WriteLine(dato);
+        }
+
+        Console.WriteLine($"\nPromedio: {promedio}");
+
+        Console.WriteLine("\nDatos menores o iguales al promedio:");
+        foreach (var dato in listaMenoresIgualPromedio)
+        {
+            Console.WriteLine(dato);
+        }
+
+        Console.WriteLine("\nDatos mayores al promedio:");
+        foreach (var dato in listaMayoresPromedio)
+        {
+            Console.WriteLine(dato);
+        }
+    }
+}

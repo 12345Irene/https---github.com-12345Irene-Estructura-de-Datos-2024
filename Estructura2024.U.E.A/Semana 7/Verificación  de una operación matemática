@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+
+public class BalancedParentheses
+{
+    public static bool AreParenthesesBalanced(string expression)
+    {
+        // Crear una pila para almacenar los paréntesis abiertos
+        Stack<char> stack = new Stack<char>();
+
+        // Recorrer cada carácter en la expresión
+        foreach (char c in expression)
+        {
+            // Si encontramos un paréntesis abierto, lo empujamos a la pila
+            if (c == '(' || c == '{' || c == '[')
+            {
+                stack.Push(c);
+            }
+            // Si encontramos un paréntesis cerrado
+            else if (c == ')' || c == '}' || c == ']')
+            {
+                // Si la pila está vacía, significa que no hay un paréntesis abierto correspondiente
+                if (stack.Count == 0)
+                {
+                    return false;
+                }
+
+                // Sacamos el paréntesis superior de la pila
+                char openParenthesis = stack.Pop();
+
+                // Verificamos que el paréntesis abierto coincide con el cerrado
+                if ((c == ')' && openParenthesis != '(') ||
+                    (c == '}' && openParenthesis != '{') ||
+                    (c == ']' && openParenthesis != '['))
+                {
+                    return false;
+                }
+            }
+        }
+
+        // Si la pila está vacía al final, significa que todos los paréntesis están balanceados
+        return stack.Count == 0;
+    }
+
+    public static void Main(string[] args)
+    {
+        string expression = "{7+(8*5)-[(9-7)+(4+1)]}";
+        bool result = AreParenthesesBalanced(expression);
+
+        Console.WriteLine($"La expresión {expression} está {(result ? "balanceada" : "desbalanceada")}");
+    }
+}

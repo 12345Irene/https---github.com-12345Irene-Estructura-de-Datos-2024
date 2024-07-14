@@ -1,0 +1,57 @@
+// Ejercicio 9
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> lista1 = new List<int>();
+        List<int> lista2 = new List<int>();
+
+        Console.WriteLine("Ingrese la cantidad de datos para la primera lista:");
+        int cantidad1 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Ingrese los datos para la primera lista:");
+        for (int i = 0; i < cantidad1; i++)
+        {
+            int dato = int.Parse(Console.ReadLine());
+            lista1.Add(dato);
+        }
+
+        Console.WriteLine("Ingrese la cantidad de datos para la segunda lista:");
+        int cantidad2 = int.Parse(Console.ReadLine());
+        Console.WriteLine("Ingrese los datos para la segunda lista:");
+        for (int i = 0; i < cantidad2; i++)
+        {
+            int dato = int.Parse(Console.ReadLine());
+            lista2.Add(dato);
+        }
+
+        if (lista1.Count == lista2.Count)
+        {
+            bool sonIguales = true;
+            for (int i = 0; i < lista1.Count; i++)
+            {
+                if (lista1[i] != lista2[i])
+                {
+                    sonIguales = false;
+                    break;
+                }
+            }
+
+            if (sonIguales)
+            {
+                Console.WriteLine("Las listas son iguales en tamaño y en contenido.");
+            }
+            else
+            {
+                Console.WriteLine("Las listas son iguales en tamaño pero no en contenido.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Las listas no tienen el mismo tamaño ni contenido.");
+        }
+    }
+}
